@@ -1,0 +1,18 @@
+说明
+1.debug和release版本的区别是带不带rsa身份校验，建议测试环境用debug，正式环境用release
+2.所有版本都会将文件内容进行aes加密传输
+
+使用方法：
+1.将xxx_linux可执行程序部署到服务器，确保端口8899有对外开放
+2.在客户端执行xxx_windows.exe或xxx_mac，此时将生成conf/autoRun.conf
+3.autoRun.conf内有配置模板，按照模板进行配置，release版本需要的auth加密身份码要在服务器本机请求获得，请求串为curl '127.0.0.1:8899/miniw/autoRun?cmd=encrypt&key=XXX'，其中key填入你的任意用户名，例如jason。auth身份码和客户端可执行程序切记不要同时泄露，一旦发生这种问题，要立刻杀死服务端进程，联系管理员重新集成rsa公私钥
+4.配置完成之后，执行xxx_windows.exe或xxx_mac就好了, 如果想要指定conf，需要通过命令行的方式执行，并将conf路径作为第一个参数输入
+5.release版本会记录用户的每一条操作日志，位置在/var/log/autoRun_xxx.log，日志自动按照7天进行滚动
+
+
+
+[一键上传工具]客户端快速说明：
+1.运行autoRun，会自动生成conf/autoRun.conf
+2.打开autoRun.conf写傻瓜命令
+
+
